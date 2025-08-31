@@ -16,6 +16,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import imagePath from "../../constants/imagePath";
 import navigationStrings from "../../constants/navigationStrings";
 import { useAuth } from "../../contexts/AuthContext";
+import colors from "../../../styles/colors";
 // create a component
 const SignUpScreen = ({ navigation }) => {
   const [selectedRole, setSelectedRole] = useState("");
@@ -173,7 +174,7 @@ const SignUpScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    backgroundColor: "#fff",
+    backgroundColor: colors.background,
     alignItems: "center",
     flexGrow: 1,
   },
@@ -181,6 +182,7 @@ const styles = StyleSheet.create({
     height: 190,
     width: 278,
     marginBottom: 10,
+    marginTop: 20,
   },
   title: {
     fontSize: 26,
@@ -213,6 +215,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 15,
     width: "100%",
+    marginTop: 20,
+
   },
   input: {
     flex: 1,
@@ -237,6 +241,8 @@ const styles = StyleSheet.create({
     color: "#555",
     flex: 1,
     marginLeft: 5,
+    marginTop: 20,
+
   },
   link: {
     color: "#8B5CF6",
@@ -247,6 +253,8 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     paddingVertical: 12,
     paddingHorizontal: 50,
+    marginTop: 20,
+
   },
   registerButtonText: {
     color: "#fff",

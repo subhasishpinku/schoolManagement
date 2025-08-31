@@ -12,11 +12,17 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import imagePath from "../../constants/imagePath";
 import navigationStrings from "../../constants/navigationStrings";
+import colors from "../../../styles/colors";
+import { useAuth } from "../../contexts/AuthContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import RoutesDashboardAdmin from "../../admin/RoutesDashboardAdmin";
 // create a component
 const SignInScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
+
   const handleSignIn = async () => {
     if (!email || !password) {
       Alert.alert("Error", "Please fill in all fields");
@@ -27,7 +33,29 @@ const SignInScreen = ({ navigation }) => {
       const result = await login(email, password);
       if (result.success) {
         console.log("Signed in user:", email);
-        navigation.navigate("Dashboard", { name: email.split("@")[0] });
+        // navigation.navigate("Dashboard", { name: email.split("@")[0] });
+        const userData = await AsyncStorage.getItem("user");
+        if (userData) {
+          const parsedUser = JSON.parse(userData); // convert string to object
+          console.log("Stored user object:", parsedUser);
+          if (parsedUser.selectedRole == "admin") {
+            navigation.navigate(navigationStrings.ROUTESDASHBOARDADMIN);
+          } else if (parsedUser.selectedRole == "teacher") {
+            navigation.navigate(navigationStrings.ROUTESDASHBOARDTEACHER);
+          } else if (parsedUser.selectedRole == "student") {
+            navigation.navigate(navigationStrings.ROUTESDASHBOARDSTUDENT);
+          } else if (parsedUser.selectedRole == "parent") {
+            navigation.navigate(navigationStrings.ROUTESDASHBOARDPARENT);
+          }
+          return parsedUser;
+        } else {
+          console.log("No user found in storage");
+           Alert.alert(
+          "Sign In Error",
+          result.error || "No user found in storage"
+        );
+          return null;
+        }
       } else {
         Alert.alert(
           "Sign In Error",
@@ -84,7 +112,6 @@ const SignInScreen = ({ navigation }) => {
           >
             Register Now
           </Text>
-          .
         </Text>
       </View>
     </ScrollView>
@@ -94,13 +121,14 @@ const SignInScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    backgroundColor: "#fff",
+    backgroundColor: colors.background,
     alignItems: "center",
     flexGrow: 1,
   },
   topImage: {
     height: 190,
     width: 278,
+    marginTop: 100,
     marginBottom: 10,
   },
   title: {
@@ -133,6 +161,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 10,
     marginBottom: 15,
+    marginTop: 20,
     width: "100%",
   },
   input: {
@@ -162,6 +191,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     paddingVertical: 12,
     paddingHorizontal: 50,
+    marginTop: 20,
   },
   registerButtonText: {
     color: "#fff",

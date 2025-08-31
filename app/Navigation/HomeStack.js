@@ -14,6 +14,17 @@ import HomeStudent from "../student/homestudent";
 import ProfileStudent from "../student/profilestudent";
 import HomeParent from "../parent/homeparent";
 import ProfileParent from "../parent/profileparent";
+import WelcomeScreen from "../welcomescreen/welcomescreen";
+import SecondScreen from "../welcomescreen/secondscreen";
+import ThirdScreen from "../welcomescreen/thirdscreen";
+import FourthScreen from "../welcomescreen/fourthscreen";
+import FifthScreen from "../welcomescreen/fifthscreen";
+import RoutesDashboardAdmin from "../admin/RoutesDashboardAdmin";
+import RoutesDashboardTeacher from "../teacher/RoutesDashboardTeacher";
+import RoutesDashboardStudent from "../student/RoutesDashboardStudent";
+import GetStartScreen from "../welcomescreen/GetStartScreen";
+import RoutesDashboardParent from "../parent/RoutesDashboardParent";
+import AssentTeacher from "../admin/AssentTeacher";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,8 +33,8 @@ export default function HomeStack() {
   const [selectedRole, setSelectedRole] = useState("");
   useEffect(() => {
     const fetchUser = async () => {
-    //   await AsyncStorage.clear();
-      //await AsyncStorage.removeItem("user");
+      // await AsyncStorage.clear();
+      // await AsyncStorage.removeItem("user");
       const user = await getUser();
       console.log(user);
     };
@@ -59,6 +70,30 @@ export default function HomeStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {!user ? (
         <>
+         <Stack.Screen
+            name={navigationStrings.WELCOMESCREEN}
+            component={WelcomeScreen}
+          />
+          <Stack.Screen
+            name={navigationStrings.SECONDSCREEN}
+            component={SecondScreen}
+          />
+          <Stack.Screen
+            name={navigationStrings.THIRDSCREEN}
+            component={ThirdScreen}
+          />
+          <Stack.Screen
+            name={navigationStrings.FOURTHSCREEN}
+            component={FourthScreen}
+          />
+          <Stack.Screen
+            name={navigationStrings.FIFTHSCREEN}
+            component={FifthScreen}
+          />
+          <Stack.Screen
+            name={navigationStrings.GETSTARTSCREEN}
+            component={GetStartScreen}
+          />
           <Stack.Screen
             name={navigationStrings.SIGNINSCREEN}
             component={SignInScreen}
@@ -67,9 +102,37 @@ export default function HomeStack() {
             name={navigationStrings.SIGNUPSCREEN}
             component={SignUpScreen}
           />
+           <Stack.Screen
+            name={navigationStrings.ROUTESDASHBOARDADMIN}
+            component={RoutesDashboardAdmin}
+          />
+           <Stack.Screen
+            name={navigationStrings.ROUTESDASHBOARDTEACHER}
+            component={RoutesDashboardTeacher}
+          />
+           <Stack.Screen
+            name={navigationStrings.ROUTESDASHBOARDSTUDENT}
+            component={RoutesDashboardStudent}
+          />
+          <Stack.Screen
+            name={navigationStrings.ROUTESDASHBOARDPARENT}
+            component={RoutesDashboardParent}
+          />
         </>
       ) : selectedRole === "admin" ? (
         <>
+         <Stack.Screen
+            name={navigationStrings.ROUTESDASHBOARDADMIN}
+            component={RoutesDashboardAdmin}
+          />
+          <Stack.Screen
+            name={navigationStrings.SIGNINSCREEN}
+            component={SignInScreen}
+          />
+           <Stack.Screen
+            name={navigationStrings.SIGNUPSCREEN}
+            component={SignUpScreen}
+          />
           <Stack.Screen
             name={navigationStrings.HOMEADMIN}
             component={HomeAdmin}
@@ -78,9 +141,25 @@ export default function HomeStack() {
             name={navigationStrings.PROFILEADMIN}
             component={ProfileAdmin}
           />
+           <Stack.Screen
+            name={navigationStrings.ASSENTTEACHER}
+            component={AssentTeacher}
+          />
         </>
       ) : selectedRole === "teacher" ? (
         <>
+         <Stack.Screen
+            name={navigationStrings.ROUTESDASHBOARDTEACHER}
+            component={RoutesDashboardTeacher}
+          />
+           <Stack.Screen
+            name={navigationStrings.SIGNINSCREEN}
+            component={SignInScreen}
+          />
+           <Stack.Screen
+            name={navigationStrings.SIGNUPSCREEN}
+            component={SignUpScreen}
+          />
           <Stack.Screen
             name={navigationStrings.TEACHERHOME}
             component={TeacherHome}
@@ -92,6 +171,18 @@ export default function HomeStack() {
         </>
       ) : selectedRole === "student" ? (
         <>
+         <Stack.Screen
+            name={navigationStrings.ROUTESDASHBOARDSTUDENT}
+            component={RoutesDashboardStudent}
+          />
+           <Stack.Screen
+            name={navigationStrings.SIGNINSCREEN}
+            component={SignInScreen}
+          />
+           <Stack.Screen
+            name={navigationStrings.SIGNUPSCREEN}
+            component={SignUpScreen}
+          />
           <Stack.Screen
             name={navigationStrings.HOMESTUDENT}
             component={HomeStudent}
@@ -103,6 +194,18 @@ export default function HomeStack() {
         </>
       ): selectedRole === "parent" ? (
         <>
+        <Stack.Screen
+            name={navigationStrings.ROUTESDASHBOARDPARENT}
+            component={RoutesDashboardParent}
+          />
+         <Stack.Screen
+            name={navigationStrings.SIGNINSCREEN}
+            component={SignInScreen}
+          />
+           <Stack.Screen
+            name={navigationStrings.SIGNUPSCREEN}
+            component={SignUpScreen}
+          />
           <Stack.Screen
             name={navigationStrings.HOMEPARENT}
             component={HomeParent}
@@ -114,6 +217,31 @@ export default function HomeStack() {
         </>
       ): (
         <>
+         <Stack.Screen
+            name={navigationStrings.WELCOMESCREEN}
+            component={WelcomeScreen}
+          />
+          <Stack.Screen
+            name={navigationStrings.SECONDSCREEN}
+            component={SecondScreen}
+          />
+          <Stack.Screen
+            name={navigationStrings.THIRDSCREEN}
+            component={ThirdScreen}
+          />
+           <Stack.Screen
+            name={navigationStrings.FOURTHSCREEN}
+            component={FourthScreen}
+          />
+          <Stack.Screen
+            name={navigationStrings.FIFTHSCREEN}
+            component={FifthScreen}
+          />
+          
+           <Stack.Screen
+            name={navigationStrings.GETSTARTSCREEN}
+            component={GetStartScreen}
+          />
           <Stack.Screen
             name={navigationStrings.SIGNINSCREEN}
             component={SignInScreen}
@@ -122,6 +250,24 @@ export default function HomeStack() {
             name={navigationStrings.SIGNUPSCREEN}
             component={SignUpScreen}
           />
+          <Stack.Screen
+            name={navigationStrings.ROUTESDASHBOARDADMIN}
+            component={RoutesDashboardAdmin}
+          />
+          <Stack.Screen
+            name={navigationStrings.ROUTESDASHBOARDTEACHER}
+            component={RoutesDashboardTeacher}
+          />
+           <Stack.Screen
+            name={navigationStrings.ROUTESDASHBOARDSTUDENT}
+            component={RoutesDashboardStudent}
+          />
+            <Stack.Screen
+            name={navigationStrings.ROUTESDASHBOARDPARENT}
+            component={RoutesDashboardParent}
+          />
+
+          
         </>
       )}
     </Stack.Navigator>

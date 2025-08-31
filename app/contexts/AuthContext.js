@@ -36,10 +36,11 @@ export function AuthProvider({ children }) {
       email: email,
       displayName: email.split("@")[0],
     };
-
+    console.log("mockUser",mockUser);
     try {
-      await AsyncStorage.setItem("user", JSON.stringify(mockUser));
-      setUser(mockUser);
+      // await AsyncStorage.setItem("user", JSON.stringify(mockUser));
+
+      // setUser(mockUser);
       return { success: true };
     } catch (error) {
       console.error("Error saving user data:", error);
